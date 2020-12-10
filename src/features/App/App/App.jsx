@@ -1,10 +1,11 @@
 import React from 'react';
+import { UsersControlPanel } from '../../users';
 import './App.css';
 
 function App() {
   return (
     <div>
-      App
+      <UsersControlPanel />
     </div>
   );
 }

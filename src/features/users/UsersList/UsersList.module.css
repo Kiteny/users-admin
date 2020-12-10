@@ -1,0 +1,18 @@
+.container {
+  text-align: center;
+  width: 100%;
+  border-collapse: collapse;
+  overflow-x: scroll;
+}
+
+.wrraper {
+  overflow-x: scroll;
+}
+
+.title-row {
+  font-weight: 500;
+}
+
+.title-cell {
+  padding: 0 10px;
+}
