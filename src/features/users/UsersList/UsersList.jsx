@@ -4,14 +4,17 @@ import PropTypes from 'prop-types';
 import styles from './UsersList.module.css';
 
 const UsersList = ({ headers, children }) => {
-  const renderedHeaders = headers.map((header) => (
-    <th className={styles['title-cell']} key={header}>{header}</th>
+  const renderedHeaders = ['', '', ...headers].map((header, index) => (
+    // eslint-disable-next-line react/no-array-index-key
+    <th key={header + index} className={styles['title-cell']}>
+      {header}
+    </th>
   ));
 
   return (
     <div className={styles.wrraper}>
       <table className={styles.container}>
-        <thead>
+        <thead className={styles.title}>
           <tr className={styles['title-row']}>
             {renderedHeaders}
           </tr>
@@ -27,7 +30,7 @@ const UsersList = ({ headers, children }) => {
 UsersList.propTypes = {
   headers: PropTypes.arrayOf(PropTypes.string).isRequired,
   children: PropTypes.oneOfType([
-    PropTypes.arrayOf(),
+    PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]),
 };

@@ -35,7 +35,7 @@ const UsersControlPanel = () => {
       id: '3',
       fio: 'Иванов2 Ивна Иванович',
       email: 'dfdsfd@gmail.com',
-      password: 'qwerty',
+      password: 'qwertydsfsdfdsfsdfdsfds',
       phone: '+77777777777',
       role: 'Client',
       dateReg: '23.12.2229',

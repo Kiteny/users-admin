@@ -1,5 +1,5 @@
 import UsersList from './UsersList';
-import UsersListItem from './components/UsersListItem';
+import UsersListItem from '../UsersListItem';
 
 export default UsersList;
 export {
