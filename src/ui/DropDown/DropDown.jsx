@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri';
 
 import styles from './DropDown.module.css';
 
-const DropDown = ({
+const DropDown = forwardRef(({
   onChange, items, title, className,
-}) => {
-  const [selected, setSelected] = useState(items?.[0]);
+}, ref) => {
+  const [selected, setSelected] = useState();
   const [opened, setOpened] = useState(false);
 
   const handlerClickHead = () => {
@@ -15,11 +15,10 @@ const DropDown = ({
   };
 
   const handlerClickOption = (e) => {
-    const id = e.target.parentNode.getAttribute('id');
     const value = e.target.textContent;
 
-    onChange({ id, value });
-    setSelected(e.target.textContent);
+    onChange(value);
+    setSelected(value);
     setOpened(false);
   };
 
@@ -41,7 +40,7 @@ const DropDown = ({
   return (
     <div className={`${styles.wrraper} ${className}`}>
       {renderedTitle}
-      <button type="button" className={styles.head} onClick={handlerClickHead}>
+      <button type="button" className={styles.head} onClick={handlerClickHead} ref={ref}>
         <span className={styles.arrow}>
           {arrow}
         </span>
@@ -52,7 +51,7 @@ const DropDown = ({
       </ul>
     </div>
   );
-};
+});
 
 DropDown.propTypes = {
   onChange: PropTypes.func,
