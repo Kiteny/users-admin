@@ -4,7 +4,9 @@ import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri';
 
 import styles from './DropDown.module.css';
 
-const DropDown = ({ onChange, items }) => {
+const DropDown = ({
+  onChange, items, title, className,
+}) => {
   const [selected, setSelected] = useState(items?.[0]);
   const [opened, setOpened] = useState(false);
 
@@ -14,9 +16,10 @@ const DropDown = ({ onChange, items }) => {
 
   const handlerClickOption = (e) => {
     const id = e.target.parentNode.getAttribute('id');
-    setSelected(e.target.textContent);
+    const value = e.target.textContent;
 
-    onChange(id);
+    onChange({ id, value });
+    setSelected(e.target.textContent);
     setOpened(false);
   };
 
@@ -28,11 +31,16 @@ const DropDown = ({ onChange, items }) => {
     </li>
   ));
 
+  const renderedTitle = title
+    ? <h3 className={styles.header}>{`${title}:`}</h3>
+    : null;
+
   const listStyles = opened ? styles.list : styles.hidden;
   const arrow = opened ? <RiArrowUpSLine size="25" /> : <RiArrowDownSLine size="25" />;
 
   return (
-    <div className={styles.wrraper}>
+    <div className={`${styles.wrraper} ${className}`}>
+      {renderedTitle}
       <button type="button" className={styles.head} onClick={handlerClickHead}>
         <span className={styles.arrow}>
           {arrow}
@@ -49,11 +57,15 @@ const DropDown = ({ onChange, items }) => {
 DropDown.propTypes = {
   onChange: PropTypes.func,
   items: PropTypes.arrayOf(PropTypes.string),
+  title: PropTypes.string,
+  className: PropTypes.string,
 };
 
 DropDown.defaultProps = {
   onChange: () => {},
   items: [],
+  title: '',
+  className: '',
 };
 
 export default DropDown;

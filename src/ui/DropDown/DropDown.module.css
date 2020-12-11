@@ -5,9 +5,9 @@
 .head {
   position: relative;
   cursor: pointer;
-  border: 2px solid #c9c9c9;
+  border: 2px solid #e0e0e0;
 
-  width: 150px;
+  width: 100%;
   padding: 6px;
 
   text-align: left;
@@ -20,6 +20,10 @@
   color: #bebebe;
 }
 
+.header {
+  margin-bottom: 5px;
+}
+
 .title {
   padding-left: 30px;
 }
@@ -29,7 +33,9 @@
   background-color: white;
   width: 100%;
   cursor: pointer;
-  border: 1px solid #c9c9c9;
+  border: 1px solid #e0e0e0;
+
+  z-index: 10;
 }
 
 .list-item {
