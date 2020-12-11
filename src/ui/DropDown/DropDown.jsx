@@ -5,9 +5,9 @@ import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri';
 import styles from './DropDown.module.css';
 
 const DropDown = forwardRef(({
-  onChange, items, title, className,
+  onChange, items, title, className, value, errorMessage,
 }, ref) => {
-  const [selected, setSelected] = useState();
+  const [selected, setSelected] = useState(value);
   const [opened, setOpened] = useState(false);
 
   const handlerClickHead = () => {
@@ -15,10 +15,10 @@ const DropDown = forwardRef(({
   };
 
   const handlerClickOption = (e) => {
-    const value = e.target.textContent;
+    const selectedValue = e.target.textContent;
 
-    onChange(value);
-    setSelected(value);
+    onChange(selectedValue);
+    setSelected(selectedValue);
     setOpened(false);
   };
 
@@ -34,6 +34,10 @@ const DropDown = forwardRef(({
     ? <h3 className={styles.header}>{`${title}:`}</h3>
     : null;
 
+  const renderedErrorMessage = errorMessage
+    ? <span className={styles.error}>{errorMessage}</span>
+    : null;
+
   const listStyles = opened ? styles.list : styles.hidden;
   const arrow = opened ? <RiArrowUpSLine size="25" /> : <RiArrowDownSLine size="25" />;
 
@@ -45,6 +49,7 @@ const DropDown = forwardRef(({
           {arrow}
         </span>
         <span className={styles.title}>{selected}</span>
+        {renderedErrorMessage}
       </button>
       <ul className={listStyles}>
         {rendredItems}
@@ -58,6 +63,8 @@ DropDown.propTypes = {
   items: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string,
   className: PropTypes.string,
+  value: PropTypes.string,
+  errorMessage: PropTypes.string,
 };
 
 DropDown.defaultProps = {
@@ -65,6 +72,8 @@ DropDown.defaultProps = {
   items: [],
   title: '',
   className: '',
+  value: '',
+  errorMessage: '',
 };
 
 export default DropDown;

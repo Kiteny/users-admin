@@ -49,6 +49,31 @@
   background-color: #ececec;
 }
 
+.error {
+  position: absolute;
+
+  bottom: 30px;
+  right: 10px;
+
+  background-color: #ff7b00;
+  color: #ffffff;
+  padding: 3px;
+  border-radius: 5px;
+}
+
+.error::before {
+  content: '';
+  position: absolute;
+
+  width: 8px;
+  height: 8px;
+  background-color: #ff7b00;
+
+  bottom: -4px;
+  left: 40px;
+  transform: rotate(45deg)
+}
+
 .hidden {
   display: none;
 }
