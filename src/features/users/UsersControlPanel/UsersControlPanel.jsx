@@ -4,6 +4,8 @@ import { MdPersonAdd } from 'react-icons/md';
 import UsersList, { UsersListItem } from '../UsersList';
 import TopBar from '../TopBar';
 import DropDown from '../../../ui/DropDown';
+import Button from '../../../ui/Button';
+
 import styles from './UsersControlPanel.module.css';
 
 const UsersControlPanel = () => {
@@ -136,74 +138,14 @@ const UsersControlPanel = () => {
       dateReg: '23.12.2229',
       dateLastEdit: '23.12.2229',
     },
-    {
-      id: '13',
-      fio: 'Иванов2 Ивна ddsd',
-      email: 'dfdsfd@gmail.com',
-      password: 'qwerty',
-      phone: '+77777777777',
-      role: 'Клиент',
-      dateReg: '23.12.2229',
-      dateLastEdit: '23.12.2229',
-    },
-    {
-      id: '14',
-      fio: 'Иванов2 Ивна ddsd',
-      email: 'dfdsfd@gmail.com',
-      password: 'qwerty',
-      phone: '+77777777777',
-      role: 'Клиент',
-      dateReg: '23.12.2229',
-      dateLastEdit: '23.12.2229',
-    },
-    {
-      id: '15',
-      fio: 'Иванов2 Ивна ddsd',
-      email: 'dfdsfd@gmail.com',
-      password: 'qwerty',
-      phone: '+77777777777',
-      role: 'Клиент',
-      dateReg: '23.12.2229',
-      dateLastEdit: '23.12.2229',
-    },
-    {
-      id: '16',
-      fio: 'Иванов2 Ивна ddsd',
-      email: 'dfdsfd@gmail.com',
-      password: 'qwerty',
-      phone: '+77777777777',
-      role: 'Клиент',
-      dateReg: '23.12.2229',
-      dateLastEdit: '23.12.2229',
-    },
-    {
-      id: '17',
-      fio: 'Иванов2 Ивна ddsd',
-      email: 'dfdsfd@gmail.com',
-      password: 'qwerty',
-      phone: '+77777777777',
-      role: 'Клиент',
-      dateReg: '23.12.2229',
-      dateLastEdit: '23.12.2229',
-    },
-    {
-      id: '18',
-      fio: 'Иванов2 Ивна ddsd',
-      email: 'dfdsfd@gmail.com',
-      password: 'qwerty',
-      phone: '+77777777777',
-      role: 'Клиент',
-      dateReg: '23.12.2229',
-      dateLastEdit: '23.12.2229',
-    },
   ];
 
   const roles = ['Все', 'Клиент', 'Партнёр', 'Админ'];
 
   const filterdUsers = users.filter((user) => user.role === selectedRole || selectedRole === 'Все');
 
-  const handlerRoleChange = (id) => {
-    setSelectedRole(roles[id]);
+  const handlerRoleChange = (value) => {
+    setSelectedRole(value);
   };
 
   const renderedUsers = filterdUsers.map((user) => (
@@ -216,10 +158,16 @@ const UsersControlPanel = () => {
   return (
     <div className={styles.container}>
       <TopBar>
-        <DropDown items={roles} onChange={handlerRoleChange} />
-        <button type="button">
-          <MdPersonAdd size="28" />
-        </button>
+        <DropDown
+          items={roles}
+          onChange={handlerRoleChange}
+          className={styles.roles}
+          value={roles[0]}
+        />
+        <Button
+          title="Добавить пользователя"
+          icon={<MdPersonAdd size="25" />}
+        />
       </TopBar>
       <UsersList headers={headers}>
         {renderedUsers}
