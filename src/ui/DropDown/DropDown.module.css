@@ -5,10 +5,10 @@
 .head {
   position: relative;
   cursor: pointer;
-  border: 1px solid #c9c9c9;
+  border: 2px solid #c9c9c9;
 
   width: 150px;
-  padding: 5px;
+  padding: 6px;
 
   text-align: left;
 }
