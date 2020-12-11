@@ -1,13 +1,24 @@
 import React from 'react';
-import { UsersControlPanel } from '../../users';
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from 'react-router-dom';
+
+import { UserAddForm, UsersControlPanel } from '../../users';
 import './App.css';
 
-function App() {
-  return (
-    <div>
-      <UsersControlPanel />
-    </div>
-  );
-}
+const App = () => (
+  <div>
+    <Router>
+      <Switch>
+        <Route path="/" component={UsersControlPanel} exact />
+        <Route path="/add" component={UserAddForm} />
+        <Redirect to="/" />
+      </Switch>
+    </Router>
+  </div>
+);
 
 export default App;

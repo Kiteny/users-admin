@@ -1,8 +1,7 @@
-import UsersList, { UsersListItem } from './UsersList';
 import UsersControlPanel from './UsersControlPanel';
+import UserAddForm from './UserAddForm';
 
 export {
-  UsersList,
-  UsersListItem,
   UsersControlPanel,
+  UserAddForm,
 };
