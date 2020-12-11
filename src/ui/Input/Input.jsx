@@ -4,13 +4,16 @@ import PropTypes from 'prop-types';
 import styles from './Input.module.css';
 
 const Input = forwardRef(({
-  title, type, name, id,
+  title, type, name, id, errorMessage,
 }, ref) => {
-  const rendredTitle = title ? `${title}:` : '';
+  const renderedTitle = title ? `${title}:` : '';
+  const renderedErrorMessage = errorMessage
+    ? <span className={styles.error}>{errorMessage}</span>
+    : null;
 
   return (
-    <div>
-      <p className={styles.title}>{rendredTitle}</p>
+    <div className={styles.wrraper}>
+      <p className={styles.title}>{renderedTitle}</p>
       <input
         className={styles.input}
         type={type}
@@ -18,6 +21,7 @@ const Input = forwardRef(({
         name={name}
         id={id}
       />
+      {renderedErrorMessage}
     </div>
   );
 });
@@ -27,6 +31,7 @@ Input.propTypes = {
   type: PropTypes.string,
   name: PropTypes.string,
   id: PropTypes.string,
+  errorMessage: PropTypes.string,
 };
 
 Input.defaultProps = {
@@ -34,6 +39,7 @@ Input.defaultProps = {
   type: 'text',
   name: '',
   id: '',
+  errorMessage: '',
 };
 
 export default Input;
