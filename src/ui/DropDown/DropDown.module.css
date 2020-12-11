@@ -1,0 +1,47 @@
+.wrraper {
+  position: relative;
+}
+
+.head {
+  position: relative;
+  cursor: pointer;
+  border: 1px solid #c9c9c9;
+
+  width: 150px;
+  padding: 5px;
+
+  text-align: left;
+}
+
+.arrow {
+  margin-top: 10px;
+  position: absolute;
+  top: -6px;
+  color: #bebebe;
+}
+
+.title {
+  padding-left: 30px;
+}
+
+.list {
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  cursor: pointer;
+  border: 1px solid #c9c9c9;
+}
+
+.list-item {
+  padding: 5px 10px;
+  width: 100%;
+  text-align: left;
+}
+
+.list-item:hover {
+  background-color: #ececec;
+}
+
+.hidden {
+  display: none;
+}
