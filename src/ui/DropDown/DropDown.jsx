@@ -7,7 +7,7 @@ import styles from './DropDown.module.css';
 const DropDown = forwardRef(({
   onChange, items, title, className, value, errorMessage,
 }, ref) => {
-  const [innerValue, setInnerValue] = useState(items?.[0]);
+  const [innerValue, setInnerValue] = useState('');
   const [opened, setOpened] = useState(false);
 
   const handlerClickHead = () => {

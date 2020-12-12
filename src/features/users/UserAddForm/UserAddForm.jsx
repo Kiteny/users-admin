@@ -28,7 +28,7 @@ const UserAddForm = () => {
   };
 
   if (isDone) {
-    return <Redirect />;
+    return <Redirect to="/users" />;
   }
 
   return (
