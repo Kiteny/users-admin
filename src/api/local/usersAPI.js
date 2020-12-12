@@ -29,7 +29,7 @@ export default {
     const users = [];
 
     if (!lastUserID) {
-      throw new Error('В базе нет пользователей!');
+      return [];
     }
 
     for (let id = lastUserID; id > 0; id -= 1) {
