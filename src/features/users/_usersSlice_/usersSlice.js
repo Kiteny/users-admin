@@ -9,9 +9,11 @@ const usersSlice = createSlice({
   name: 'users',
   initialState: usersEntityAdapter.getInitialState(),
   reducers: {
-    addUser(state, { payload }) {
-      usersAPI.addUser(payload);
-      usersEntityAdapter.addOne(state, usersAPI.getUser(payload.id));
+    addUser(_, { payload }) {
+      const {
+        fio, email, phone, password, role,
+      } = payload;
+      usersAPI.addUser(fio, email, phone, password, role);
     },
     getAllUsers(state) {
       usersEntityAdapter.removeAll(state);

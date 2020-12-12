@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Redirect } from 'react-router-dom';
 
 import UserForm from '../UserForm';
 import Input from '../../../ui/Input';
 import DropDown from '../../../ui/DropDown';
 import validationSchema from './validationSchema';
+import { usersActions } from '../_usersSlice_';
 
 const UserAddForm = () => {
   const {
@@ -14,11 +17,19 @@ const UserAddForm = () => {
     resolver: yupResolver(validationSchema),
   });
 
+  const [isDone, setIsDone] = useState(false);
+  const dispatch = useDispatch();
+
   const roles = ['Клиент', 'Партнёр', 'Админ'];
 
   const handlerSubmit = (data) => {
-    console.log(data);
+    dispatch(usersActions.addUser(data));
+    setIsDone(true);
   };
+
+  if (isDone) {
+    return <Redirect />;
+  }
 
   return (
     <UserForm
