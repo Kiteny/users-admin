@@ -6,14 +6,14 @@ import styles from './Input.module.css';
 const Input = forwardRef(({
   title, type, name, id, errorMessage, placeholder,
 }, ref) => {
-  const renderedTitle = title ? `${title}:` : '';
+  const renderedTitle = title ? <p className={styles.title}>{title}</p> : null;
   const renderedErrorMessage = errorMessage
     ? <span className={styles.error}>{errorMessage}</span>
     : null;
 
   return (
     <div className={styles.wrraper}>
-      <p className={styles.title}>{renderedTitle}</p>
+      {renderedTitle}
       <input
         className={styles.input}
         type={type}
