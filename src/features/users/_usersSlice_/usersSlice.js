@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 import usersAPI from '../../../api/local/usersAPI';
 
@@ -7,7 +8,9 @@ const usersEntityAdapter = createEntityAdapter({
 
 const usersSlice = createSlice({
   name: 'users',
-  initialState: usersEntityAdapter.getInitialState(),
+  initialState: usersEntityAdapter.getInitialState({
+    currentRole: 'Все',
+  }),
   reducers: {
     addUser(_, { payload }) {
       const {
@@ -18,15 +21,26 @@ const usersSlice = createSlice({
     getAllUsers(state) {
       usersEntityAdapter.removeAll(state);
       usersEntityAdapter.addMany(state, usersAPI.getAllUsers());
+      state.currentRole = 'Все';
     },
     getFilteredUsers(state, { payload }) {
       const { field, value } = payload;
 
+      if (field === 'role') {
+        state.currentRole = value;
+      }
+
       usersEntityAdapter.removeAll(state);
       usersEntityAdapter.addMany(state, usersAPI.getAllUsers((user) => user[field] === value));
     },
-    deleteUser(state, { payload }) {
-      usersEntityAdapter.removeOne(state, payload);
+    deleteUser(state, { payload: id }) {
+      usersEntityAdapter.removeOne(state, id);
+      usersAPI.deleteUser(id);
+    },
+    editUser(state, { payload }) {
+      const now = new Date().toISOString();
+      usersEntityAdapter.upsertOne(state, { ...payload, dateLastEdit: now });
+      usersAPI.editUser(payload);
     },
   },
 });

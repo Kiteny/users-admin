@@ -1,8 +1,8 @@
 /* eslint-disable no-use-before-define */
 export default {
-  addUser(fio, email, phone, password, role) {
+  addUser(fio, email, phone, password, role, dateReg) {
     const now = new Date().toISOString();
-    const userString = `${fio};${email};${phone};${password};${role};${now};${now}`;
+    const userString = `${fio};${email};${phone};${password};${role};${dateReg || now};${now}`;
 
     let lastUserID = +localStorage.getItem('lastUserID');
 
@@ -46,6 +46,17 @@ export default {
     }
 
     return users;
+  },
+  deleteUser(id) {
+    localStorage.removeItem(`user${id}`);
+  },
+  editUser(userData) {
+    const {
+      id, fio, email, phone, password, role, dateReg,
+    } = userData;
+
+    this.deleteUser(id);
+    this.addUser(fio, email, phone, password, role, dateReg);
   },
 };
 

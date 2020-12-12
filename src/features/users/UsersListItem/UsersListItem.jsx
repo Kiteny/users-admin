@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { FaTrashAlt, FaEdit } from 'react-icons/fa';
 
@@ -12,26 +13,32 @@ const UsersListItem = ({ userId }) => {
     fio, email, password, phone, role, dateReg, dateLastEdit,
   } = useSelector((state) => selectUserById(state, userId));
 
+  const currentRole = useSelector((state) => state.users.currentRole);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handlerDeleteClick = () => {
     dispatch(usersActions.deleteUser(userId));
   };
 
   const handlerEditClick = () => {
-    console.log('редактирование');
+    history.push(`/users/edit/${userId}`);
   };
+
+  if (currentRole !== 'Все' && currentRole !== role) {
+    return null;
+  }
 
   return (
     <tr className={styles.row}>
       <td className={styles.cell}>
         <button type="button" onClick={handlerDeleteClick}>
-          <FaTrashAlt />
+          <FaTrashAlt size="20" />
         </button>
       </td>
       <td className={styles.cell}>
         <button type="button" onClick={handlerEditClick}>
-          <FaEdit />
+          <FaEdit size="20" />
         </button>
       </td>
       <td className={styles.cell}>{fio}</td>
