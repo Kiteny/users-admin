@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styles from './Input.module.css';
 
 const Input = forwardRef(({
-  title, type, name, id, errorMessage, placeholder,
+  title, type, name, id, errorMessage, placeholder, value, onChange,
 }, ref) => {
   const renderedTitle = title ? <p className={styles.title}>{title}</p> : null;
   const renderedErrorMessage = errorMessage
@@ -21,6 +21,8 @@ const Input = forwardRef(({
         name={name}
         id={id}
         placeholder={placeholder}
+        value={value}
+        onChange={onChange}
       />
       {renderedErrorMessage}
     </div>
@@ -34,6 +36,8 @@ Input.propTypes = {
   id: PropTypes.string,
   errorMessage: PropTypes.string,
   placeholder: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 Input.defaultProps = {
@@ -43,6 +47,8 @@ Input.defaultProps = {
   id: '',
   errorMessage: '',
   placeholder: '',
+  value: '',
+  onChange: () => {},
 };
 
 export default Input;
