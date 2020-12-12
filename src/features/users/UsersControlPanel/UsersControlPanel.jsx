@@ -13,9 +13,6 @@ import {
   selectUsersIds, usersActions,
 } from '../_usersSlice_';
 
-// API
-import userAPI from '../../../api/local/usersAPI';
-
 import styles from './UsersControlPanel.module.css';
 
 const UsersControlPanel = () => {
@@ -64,8 +61,6 @@ const UsersControlPanel = () => {
             icon={<MdPersonAdd size="25" />}
           />
         </Link>
-        <button type="button" onClick={() => userAPI.addUser('test', 'test@gmail.com', '+755555555', 'qwerty', 'Клиент')}>test</button>
-        <button type="button" onClick={() => console.log(userAPI.getAllUsers())}>display</button>
       </TopBar>
       <UsersList headers={headers}>
         {renderedUsers}

@@ -1,9 +1,9 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { FaTrashAlt, FaEdit } from 'react-icons/fa';
 
-import { selectUserById } from '../_usersSlice_';
+import { selectUserById, usersActions } from '../_usersSlice_';
 
 import styles from './UsersListItem.module.css';
 
@@ -12,8 +12,10 @@ const UsersListItem = ({ userId }) => {
     fio, email, password, phone, role, dateReg, dateLastEdit,
   } = useSelector((state) => selectUserById(state, userId));
 
+  const dispatch = useDispatch();
+
   const handlerDeleteClick = () => {
-    console.log('удаление');
+    dispatch(usersActions.deleteUser(userId));
   };
 
   const handlerEditClick = () => {

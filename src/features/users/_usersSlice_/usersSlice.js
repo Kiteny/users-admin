@@ -23,6 +23,9 @@ const usersSlice = createSlice({
       usersEntityAdapter.removeAll(state);
       usersEntityAdapter.addMany(state, usersAPI.getAllUsers((user) => user[field] === value));
     },
+    deleteUser(state, { payload }) {
+      usersEntityAdapter.removeOne(state, payload);
+    },
   },
 });
 
