@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { MdPersonAdd } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
@@ -7,10 +8,23 @@ import TopBar from '../TopBar';
 import DropDown from '../../../ui/DropDown';
 import Button from '../../../ui/Button';
 
+// State
+import {
+  selectUsersIds, usersActions,
+} from '../_usersSlice_';
+
+// API
+import userAPI from '../../../api/local/usersAPI';
+
 import styles from './UsersControlPanel.module.css';
 
 const UsersControlPanel = () => {
-  const [selectedRole, setSelectedRole] = useState('Все');
+  const users = useSelector(selectUsersIds);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(usersActions.getAllUsers());
+  }, []);
 
   const headers = [
     'ФИО', 'Email', 'Пароль',
@@ -18,141 +32,20 @@ const UsersControlPanel = () => {
     'Дата последенего изменения',
   ];
 
-  const users = [
-    {
-      id: '1',
-      fio: 'Иванов Ивна Иванович',
-      email: 'dfdsfd@gmail.com',
-      password: 'qwerty',
-      phone: '+77777777777',
-      role: 'Client',
-      dateReg: '23.12.2229',
-      dateLastEdit: '23.12.2229',
-    },
-    {
-      id: '2',
-      fio: 'Иванов2 Ивна Иванович',
-      email: 'dfdsfd@gmail.com',
-      password: 'qwerty',
-      phone: '+77777777777',
-      role: 'Админ',
-      dateReg: '23.12.2229',
-      dateLastEdit: '23.12.2229',
-    },
-    {
-      id: '3',
-      fio: 'Иванов2121 Ивна Иванович',
-      email: 'dfdsfd@gmail.com',
-      password: 'qwertydsfsdfdsfsdfdsfds',
-      phone: '+77777777777',
-      role: 'Клиент',
-      dateReg: '23.12.2229',
-      dateLastEdit: '23.12.2229',
-    },
-    {
-      id: '4',
-      fio: 'Иванов2 Ивна ddsd',
-      email: 'dfdsfd@gmail.com',
-      password: 'qwerty',
-      phone: '+77777777777',
-      role: 'Клиент',
-      dateReg: '23.12.2229',
-      dateLastEdit: '23.12.2229',
-    },
-    {
-      id: '5',
-      fio: 'Иванов2 Ивна ddsd',
-      email: 'dfdsfd@gmail.com',
-      password: 'qwerty',
-      phone: '+77777777777',
-      role: 'Клиент',
-      dateReg: '23.12.2229',
-      dateLastEdit: '23.12.2229',
-    },
-    {
-      id: '6',
-      fio: 'Иванов2 Ивна ddsd',
-      email: 'dfdsfd@gmail.com',
-      password: 'qwerty',
-      phone: '+77777777777',
-      role: 'Клиент',
-      dateReg: '23.12.2229',
-      dateLastEdit: '23.12.2229',
-    },
-    {
-      id: '7',
-      fio: 'Иванов2 Ивна ddsd',
-      email: 'dfdsfd@gmail.com',
-      password: 'qwerty',
-      phone: '+77777777777',
-      role: 'Клиент',
-      dateReg: '23.12.2229',
-      dateLastEdit: '23.12.2229',
-    },
-    {
-      id: '8',
-      fio: 'Иванов2 Ивна ddsd',
-      email: 'dfdsfd@gmail.com',
-      password: 'qwerty',
-      phone: '+77777777777',
-      role: 'Клиент',
-      dateReg: '23.12.2229',
-      dateLastEdit: '23.12.2229',
-    },
-    {
-      id: '9',
-      fio: 'Иванов2 Ивна ddsd',
-      email: 'dfdsfd@gmail.com',
-      password: 'qwerty',
-      phone: '+77777777777',
-      role: 'Клиент',
-      dateReg: '23.12.2229',
-      dateLastEdit: '23.12.2229',
-    },
-    {
-      id: '10',
-      fio: 'Иванов2 Ивна ddsd',
-      email: 'dfdsfd@gmail.com',
-      password: 'qwerty',
-      phone: '+77777777777',
-      role: 'Клиент',
-      dateReg: '23.12.2229',
-      dateLastEdit: '23.12.2229',
-    },
-    {
-      id: '11',
-      fio: 'Иванов2 Ивна ddsd',
-      email: 'dfdsfd@gmail.com',
-      password: 'qwerty',
-      phone: '+77777777777',
-      role: 'Клиент',
-      dateReg: '23.12.2229',
-      dateLastEdit: '23.12.2229',
-    },
-    {
-      id: '12',
-      fio: 'Иванов2 Ивна ddsd',
-      email: 'dfdsfd@gmail.com',
-      password: 'qwerty',
-      phone: '+77777777777',
-      role: 'Клиент',
-      dateReg: '23.12.2229',
-      dateLastEdit: '23.12.2229',
-    },
-  ];
-
   const roles = ['Все', 'Клиент', 'Партнёр', 'Админ'];
 
-  const filterdUsers = users.filter((user) => user.role === selectedRole || selectedRole === 'Все');
-
   const handlerRoleChange = (value) => {
-    setSelectedRole(value);
+    if (value === 'Все') {
+      dispatch(usersActions.getAllUsers());
+    } else {
+      dispatch(usersActions.getFilteredUsers({ field: 'role', value }));
+    }
   };
 
-  const renderedUsers = filterdUsers.map((user) => (
+  const renderedUsers = users.map((user) => (
     <UsersListItem
-      key={user.id}
-      {...user}
+      key={user}
+      userId={user}
     />
   ));
 
@@ -171,6 +64,8 @@ const UsersControlPanel = () => {
             icon={<MdPersonAdd size="25" />}
           />
         </Link>
+        <button type="button" onClick={() => userAPI.addUser('test', 'test@gmail.com', '+755555555', 'qwerty', 'Клиент')}>test</button>
+        <button type="button" onClick={() => console.log(userAPI.getAllUsers())}>display</button>
       </TopBar>
       <UsersList headers={headers}>
         {renderedUsers}
