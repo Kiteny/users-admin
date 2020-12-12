@@ -15,6 +15,10 @@
   margin-bottom: 30px;
 }
 
+.inputsWrraper > * + * {
+  margin-top: 10px;
+}
+
 .submit {
   margin: 0 auto;
   display: block;
