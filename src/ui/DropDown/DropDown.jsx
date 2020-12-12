@@ -7,7 +7,7 @@ import styles from './DropDown.module.css';
 const DropDown = forwardRef(({
   onChange, items, title, className, value, errorMessage,
 }, ref) => {
-  const [selected, setSelected] = useState(value);
+  const [innerValue, setInnerValue] = useState(items?.[0]);
   const [opened, setOpened] = useState(false);
 
   const handlerClickHead = () => {
@@ -18,7 +18,7 @@ const DropDown = forwardRef(({
     const selectedValue = e.target.textContent;
 
     onChange(selectedValue);
-    setSelected(selectedValue);
+    setInnerValue(selectedValue);
     setOpened(false);
   };
 
@@ -48,7 +48,7 @@ const DropDown = forwardRef(({
         <span className={styles.arrow}>
           {arrow}
         </span>
-        <span className={styles.title}>{selected}</span>
+        <span className={styles.title}>{value || innerValue}</span>
         {renderedErrorMessage}
       </button>
       <ul className={listStyles}>
