@@ -42,6 +42,16 @@ const usersSlice = createSlice({
       usersEntityAdapter.upsertOne(state, { ...payload, dateLastEdit: now });
       usersAPI.editUser(payload);
     },
+    search(state, { payload }) {
+      const ids = state.ids.filter((id) => {
+        const user = state.entities[id];
+        if (user.email.includes(payload) || user.phone.includes(payload)) {
+          return false;
+        }
+        return true;
+      });
+      usersEntityAdapter.removeMany(state, ids);
+    },
   },
 });
 

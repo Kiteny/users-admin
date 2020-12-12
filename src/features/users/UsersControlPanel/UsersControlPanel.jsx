@@ -1,5 +1,5 @@
 // Vendors
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { MdPersonAdd } from 'react-icons/md';
 import { Link } from 'react-router-dom';
@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 // Components
 import UsersList, { UsersListItem } from '../UsersList';
 import TopBar from '../TopBar';
+import UserSearchForm from '../UserSearchForm';
 import DropDown from '../../../ui/DropDown';
 import Button from '../../../ui/Button';
 
@@ -31,6 +32,10 @@ const UsersControlPanel = () => {
 
   const roles = ['Все', 'Клиент', 'Партнёр', 'Админ'];
 
+  useEffect(() => {
+    dispatch(usersActions.getAllUsers());
+  }, []);
+
   const handlerRoleChange = (value) => {
     if (value === 'Все') {
       dispatch(usersActions.getAllUsers());
@@ -49,6 +54,7 @@ const UsersControlPanel = () => {
   return (
     <div className={styles.container}>
       <TopBar>
+        <UserSearchForm className={styles.search} />
         <DropDown
           items={roles}
           onChange={handlerRoleChange}
