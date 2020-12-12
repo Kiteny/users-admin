@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { MdPersonAdd } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 import UsersList, { UsersListItem } from '../UsersList';
 import TopBar from '../TopBar';
@@ -164,10 +165,12 @@ const UsersControlPanel = () => {
           className={styles.roles}
           value={roles[0]}
         />
-        <Button
-          title="Добавить пользователя"
-          icon={<MdPersonAdd size="25" />}
-        />
+        <Link to="/addUser">
+          <Button
+            title="Добавить пользователя"
+            icon={<MdPersonAdd size="25" />}
+          />
+        </Link>
       </TopBar>
       <UsersList headers={headers}>
         {renderedUsers}

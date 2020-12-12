@@ -14,7 +14,7 @@ const App = () => (
     <Router>
       <Switch>
         <Route path="/" component={UsersControlPanel} exact />
-        <Route path="/add" component={UserAddForm} />
+        <Route path="/addUser" component={UserAddForm} />
         <Redirect to="/" />
       </Switch>
     </Router>
