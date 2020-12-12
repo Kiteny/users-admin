@@ -21,7 +21,7 @@ const Input = forwardRef(({
         name={name}
         id={id}
         placeholder={placeholder}
-        value={value}
+        {...(ref || { value })}
         onChange={onChange}
       />
       {renderedErrorMessage}
