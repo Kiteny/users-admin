@@ -1,3 +1,4 @@
+// Vendors
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import {
@@ -7,11 +8,11 @@ import {
   Switch,
 } from 'react-router-dom';
 
+// Components
+import CriticalErrorsBoundary from '../CriticalErrorsBoundary';
 import {
   UserAddForm, UsersControlPanel, UserEditForm, usersActions,
 } from '../../users';
-
-import './App.css';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const App = () => {
   }, []);
 
   return (
-    <div>
+    <CriticalErrorsBoundary>
       <Router>
         <Switch>
           <Route path="/users/add" component={UserAddForm} />
@@ -30,7 +31,7 @@ const App = () => {
           <Redirect to="/users/1" />
         </Switch>
       </Router>
-    </div>
+    </CriticalErrorsBoundary>
   );
 };
 
