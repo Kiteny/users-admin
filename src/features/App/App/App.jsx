@@ -24,10 +24,10 @@ const App = () => {
     <div>
       <Router>
         <Switch>
-          <Route path="/users" component={UsersControlPanel} exact />
+          <Route path="/users/:offset" component={UsersControlPanel} />
           <Route path="/users/add" component={UserAddForm} />
           <Route path="/users/edit/:userID" component={UserEditForm} exact />
-          <Redirect to="/users" />
+          <Redirect to="/users/1" />
         </Switch>
       </Router>
     </div>

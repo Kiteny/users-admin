@@ -1,6 +1,8 @@
 /* eslint-disable no-param-reassign */
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
+
 import usersAPI from '../../../api/local/usersAPI';
+import { SELECTION } from './constants';
 
 const usersEntityAdapter = createEntityAdapter({
   sortComparer: (a, b) => a.fio.localeCompare(b.fio),
@@ -10,6 +12,7 @@ const usersSlice = createSlice({
   name: 'users',
   initialState: usersEntityAdapter.getInitialState({
     currentRole: 'Все',
+    selection: SELECTION,
   }),
   reducers: {
     addUser(_, { payload }) {

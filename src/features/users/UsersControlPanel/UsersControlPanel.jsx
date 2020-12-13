@@ -10,6 +10,7 @@ import TopBar from '../TopBar';
 import UserSearchForm from '../UserSearchForm';
 import DropDown from '../../../ui/DropDown';
 import Button from '../../../ui/Button';
+import UsersOffsetControls from '../UsersOffsetControls';
 
 // State
 import {
@@ -71,6 +72,7 @@ const UsersControlPanel = () => {
       <UsersList headers={headers}>
         {renderedUsers}
       </UsersList>
+      <UsersOffsetControls className={styles['offset-controls']} />
     </div>
   );
 };
