@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
+import { createEntityAdapter, createSelector, createSlice } from '@reduxjs/toolkit';
 
 import usersAPI from '../../../api/local/usersAPI';
 import { SELECTION } from './constants';
@@ -66,3 +66,17 @@ export const {
   selectById: selectUserById,
   selectTotal: selectUsersTotal,
 } = usersEntityAdapter.getSelectors((state) => state.users);
+
+export const selectUsersIdsByOffset = createSelector(
+  selectUsersIds,
+  (state) => state.users.selection,
+  (_, offset) => offset,
+  (ids, selection, offset) => {
+    const start = selection * offset - selection;
+    const end = start + selection;
+
+    const selectedIds = ids.slice(start, end);
+
+    return selectedIds;
+  },
+);

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import Button from '../../../ui/Button';
 import Input from '../../../ui/Input';
@@ -12,9 +13,11 @@ const UserSearchForm = ({ className }) => {
   const [value, setValue] = useState('');
   const currentRole = useSelector((state) => state.users.currentRole);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handlerSearch = () => {
     dispatch(usersActions.search(value));
+    history.push('/users/1');
   };
 
   const handlerReset = () => {
@@ -24,7 +27,8 @@ const UserSearchForm = ({ className }) => {
       dispatch(usersActions.getFilteredUsers({ field: 'role', value: currentRole }));
     }
 
-    setValue();
+    setValue('');
+    history.push('/users/1');
   };
 
   return (

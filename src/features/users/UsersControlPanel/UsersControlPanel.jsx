@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { MdPersonAdd } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 // Components
 import UsersList, { UsersListItem } from '../UsersList';
@@ -14,14 +14,15 @@ import UsersOffsetControls from '../UsersOffsetControls';
 
 // State
 import {
-  selectUsersIds, usersActions,
+  selectUsersIdsByOffset, usersActions,
 } from '../_usersSlice_';
 
 // Styles
 import styles from './UsersControlPanel.module.css';
 
 const UsersControlPanel = () => {
-  const users = useSelector(selectUsersIds);
+  const { offset } = useParams();
+  const usersIds = useSelector((state) => selectUsersIdsByOffset(state, offset));
   const currentRole = useSelector((state) => state.users.currentRole);
   const dispatch = useDispatch();
 
@@ -45,7 +46,7 @@ const UsersControlPanel = () => {
     }
   };
 
-  const renderedUsers = users.map((user) => (
+  const renderedUsers = usersIds.map((user) => (
     <UsersListItem
       key={user}
       userId={user}
