@@ -2,6 +2,22 @@
   padding: 10px;
 }
 
+.row {
+  height: 65px;
+}
+
 .row:nth-child(odd) {
   background-color: #dadada;
+}
+
+.cell:nth-child(3) {
+  width: 20%;
+}
+
+.cell:nth-child(8) {
+  width: 10%;
+}
+
+.cell:nth-child(9) {
+  width: 10%;
 }

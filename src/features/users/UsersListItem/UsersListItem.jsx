@@ -17,6 +17,25 @@ const UsersListItem = ({ userId }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const formatDate = {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  };
+
+  const formattedDateReg = new Intl.DateTimeFormat('ru', formatDate)
+    .format(
+      new Date(dateReg),
+    );
+  const formattedDateLastEdit = new Intl.DateTimeFormat('ru', {
+    ...formatDate,
+    hour: 'numeric',
+    minute: 'numeric',
+  })
+    .format(
+      new Date(dateLastEdit),
+    );
+
   const handlerDeleteClick = () => {
     dispatch(usersActions.deleteUser(userId));
   };
@@ -46,8 +65,8 @@ const UsersListItem = ({ userId }) => {
       <td className={styles.cell}>{password}</td>
       <td className={styles.cell}>{phone}</td>
       <td className={styles.cell}>{role}</td>
-      <td className={styles.cell}>{dateReg}</td>
-      <td className={styles.cell}>{dateLastEdit}</td>
+      <td className={styles.cell}>{formattedDateReg}</td>
+      <td className={styles.cell}>{formattedDateLastEdit}</td>
     </tr>
   );
 };

@@ -17,7 +17,7 @@ const UsersOffsetControls = ({ className }) => {
   const usersCount = useSelector(selectUsersTotal);
   const pagesCount = useMemo(() => Math.ceil(usersCount / selection), [usersCount, selection]);
   const isBegin = +offset === 1;
-  const isEnd = +offset === pagesCount;
+  const isEnd = +offset === pagesCount || pagesCount === 0;
 
   const handlerAction = (e) => {
     const action = e.currentTarget.getAttribute('action');

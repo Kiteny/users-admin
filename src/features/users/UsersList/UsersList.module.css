@@ -3,7 +3,7 @@
   border-collapse: collapse;
   
   width: 100%;
-  min-width: 990px;
+  min-width: 1050px;
 }
 
 .title {
@@ -17,6 +17,7 @@
 .title-row {
   font-weight: 600;
   font-size: 18px;
+  height: 55px;
 }
 
 .title-cell {

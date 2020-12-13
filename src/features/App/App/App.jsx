@@ -24,9 +24,9 @@ const App = () => {
     <div>
       <Router>
         <Switch>
-          <Route path="/users/:offset" component={UsersControlPanel} />
           <Route path="/users/add" component={UserAddForm} />
           <Route path="/users/edit/:userID" component={UserEditForm} exact />
+          <Route path="/users/:offset" component={UsersControlPanel} />
           <Redirect to="/users/1" />
         </Switch>
       </Router>

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Redirect, useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import UserForm from '../UserForm';
 import Input from '../../../ui/Input';
@@ -11,10 +11,10 @@ import validationSchema from './validationSchema';
 import { usersActions, selectUserById } from '../_usersSlice_';
 
 const UserEditForm = () => {
-  const [isDone, setIsDone] = useState(false);
   const { userID } = useParams();
   const user = useSelector((state) => selectUserById(state, userID));
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const {
     register, handleSubmit, control, errors, setValue,
@@ -36,12 +36,8 @@ const UserEditForm = () => {
       dateReg: user.dateReg,
       ...data,
     }));
-    setIsDone(true);
+    history.goBack();
   };
-
-  if (isDone) {
-    return <Redirect to="/users" />;
-  }
 
   return (
     <UserForm
