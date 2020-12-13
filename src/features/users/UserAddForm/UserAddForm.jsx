@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useHistory } from 'react-router-dom';
@@ -20,7 +20,7 @@ const UserAddForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const roles = ['Клиент', 'Партнёр', 'Админ'];
+  const roles = useSelector((state) => state.users.roles);
 
   const handlerSubmit = (data) => {
     dispatch(usersActions.addUser(data));

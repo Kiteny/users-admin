@@ -30,10 +30,10 @@ const UsersControlPanel = () => {
   const headers = [
     'ФИО', 'Email', 'Пароль',
     'Телефон', 'Роль', 'Дата регистрации',
-    'Дата последенего изменения',
+    'Дата последнего изменения',
   ];
 
-  const roles = ['Все', 'Клиент', 'Партнёр', 'Админ'];
+  const roles = useSelector((state) => state.users.roles);
 
   useEffect(() => {
     dispatch(usersActions.getAllUsers());
@@ -60,7 +60,7 @@ const UsersControlPanel = () => {
         <UserSearchForm />
         <TopBarSection>
           <DropDown
-            items={roles}
+            items={['Все', ...roles]}
             onChange={handlerRoleChange}
             className={styles.roles}
             value={currentRole}

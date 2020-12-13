@@ -2,7 +2,7 @@
 import { createEntityAdapter, createSelector, createSlice } from '@reduxjs/toolkit';
 
 import usersAPI from '../../../api/local/usersAPI';
-import { SELECTION } from './constants';
+import { ROLES, SELECTION } from './constants';
 
 const usersEntityAdapter = createEntityAdapter({
   sortComparer: (a, b) => a.fio.localeCompare(b.fio),
@@ -13,6 +13,7 @@ const usersSlice = createSlice({
   initialState: usersEntityAdapter.getInitialState({
     currentRole: 'Все',
     selection: SELECTION,
+    roles: ROLES,
   }),
   reducers: {
     addUser(_, { payload }) {

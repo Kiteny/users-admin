@@ -22,7 +22,7 @@ const UserEditForm = () => {
     resolver: yupResolver(validationSchema),
   });
 
-  const roles = ['Клиент', 'Партнёр', 'Админ'];
+  const roles = useSelector((state) => state.users.roles);
 
   useEffect(() => {
     if (!user) return;
