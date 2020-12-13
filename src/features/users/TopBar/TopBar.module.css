@@ -6,5 +6,5 @@
 }
 
 .container > * + * {
-  margin-left: 10px;
+  margin-left: 30px;
 }

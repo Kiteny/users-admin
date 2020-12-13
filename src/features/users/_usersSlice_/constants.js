@@ -1,1 +1,1 @@
-export const SELECTION = 3;
+export const SELECTION = 10;
