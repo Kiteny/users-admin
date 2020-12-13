@@ -40,7 +40,7 @@
     width: 37px;
   }
 
-  .title {
+  .buttonWithIcon .title {
     display: none;
   }
 }

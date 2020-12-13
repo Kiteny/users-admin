@@ -1,5 +1,5 @@
 // Vendors
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
@@ -21,6 +21,18 @@ const UsersOffsetControls = ({ className }) => {
   const pagesCount = useMemo(() => Math.ceil(usersCount / selection), [usersCount, selection]);
   const isBegin = +offset === 1;
   const isEnd = +offset === pagesCount || pagesCount === 0;
+
+  useEffect(() => {
+    if (pagesCount < 1) return;
+
+    if (+offset > pagesCount) {
+      history.push(`/users/${pagesCount}`);
+    }
+
+    if (+offset < 1) {
+      history.push('/users/1');
+    }
+  }, [offset, pagesCount]);
 
   const handlerAction = (e) => {
     const action = e.currentTarget.getAttribute('action');

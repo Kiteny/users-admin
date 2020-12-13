@@ -8,7 +8,12 @@ import styles from './Input.module.css';
 const Input = forwardRef(({
   title, type, name, id, errorMessage, placeholder, value, onChange,
 }, ref) => {
-  const renderedTitle = title ? <p className={styles.title}>{title}</p> : null;
+  const renderedTitle = title ? (
+    <p className={styles.title}>
+      {title}
+      :
+    </p>
+  ) : null;
   const renderedErrorMessage = errorMessage
     ? <span className={styles.error}>{errorMessage}</span>
     : null;
