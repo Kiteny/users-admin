@@ -6,7 +6,16 @@ import styles from './Button.module.css';
 const Button = ({
   title, icon, fulfilled, type, className, onClick,
 }) => {
-  const buttonStyles = icon ? styles.buttonWithIcon : styles.button;
+  let buttonStyles = '';
+
+  if (title && icon) {
+    buttonStyles = styles.buttonWithIcon;
+  } else if (!title && icon) {
+    buttonStyles = styles.buttonOnlyIcon;
+  } else {
+    buttonStyles = styles.button;
+  }
+
   const fulfilledStyles = fulfilled ? styles.fulfilled : '';
 
   return (
@@ -17,7 +26,7 @@ const Button = ({
       onClick={onClick}
     >
       <span className={styles.icon}>{icon}</span>
-      {title}
+      <span className={styles.title}>{title}</span>
     </button>
   );
 };

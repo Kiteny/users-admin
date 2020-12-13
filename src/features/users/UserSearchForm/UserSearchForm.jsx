@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { FaSearch } from 'react-icons/fa';
+import { GrPowerReset } from 'react-icons/gr';
 
 import Button from '../../../ui/Button';
 import Input from '../../../ui/Input';
@@ -34,8 +36,8 @@ const UserSearchForm = ({ className }) => {
   return (
     <div className={`${styles.container} ${className}`}>
       <Input placeholder="Email или телефон" value={value} onChange={(e) => setValue(e.target.value)} />
-      <Button title="Найти" onClick={handlerSearch} />
-      <Button title="Сброс" onClick={handlerReset} />
+      <Button icon={<FaSearch size="20" />} onClick={handlerSearch} />
+      <Button icon={<GrPowerReset size="20" />} onClick={handlerReset} />
     </div>
   );
 };

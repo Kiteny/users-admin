@@ -11,6 +11,7 @@ import UserSearchForm from '../UserSearchForm';
 import DropDown from '../../../ui/DropDown';
 import Button from '../../../ui/Button';
 import UsersOffsetControls from '../UsersOffsetControls';
+import TopBarSection from '../TopBarSection';
 
 // State
 import {
@@ -55,20 +56,22 @@ const UsersControlPanel = () => {
 
   return (
     <div className={styles.container}>
-      <TopBar>
-        <UserSearchForm className={styles.search} />
-        <DropDown
-          items={roles}
-          onChange={handlerRoleChange}
-          className={styles.roles}
-          value={currentRole}
-        />
-        <Link to="/users/add">
-          <Button
-            title="Добавить пользователя"
-            icon={<MdPersonAdd size="25" />}
+      <TopBar className={styles['top-bar']}>
+        <UserSearchForm />
+        <TopBarSection>
+          <DropDown
+            items={roles}
+            onChange={handlerRoleChange}
+            className={styles.roles}
+            value={currentRole}
           />
-        </Link>
+          <Link to="/users/add">
+            <Button
+              title="Добавить пользователя"
+              icon={<MdPersonAdd size="25" />}
+            />
+          </Link>
+        </TopBarSection>
       </TopBar>
       <UsersList headers={headers}>
         {renderedUsers}

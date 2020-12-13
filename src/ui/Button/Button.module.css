@@ -7,8 +7,19 @@
 
 .buttonWithIcon {
   composes: button;
-
   padding-left: 40px;
+}
+
+.buttonOnlyIcon {
+  composes: button;
+  padding: 0;
+  height: 37px;
+  width: 37px;
+}
+
+.buttonOnlyIcon .icon {
+  left: 7px;
+  top: 6px;
 }
 
 .icon {
@@ -19,4 +30,17 @@
 
 .fulfilled {
   background-color: #e0e0e0;
+}
+
+@media (max-width: 768px) {
+  .button {
+    composes: buttonOnlyIcon;
+    padding: 0;
+    height: 37px;
+    width: 37px;
+  }
+
+  .title {
+    display: none;
+  }
 }
