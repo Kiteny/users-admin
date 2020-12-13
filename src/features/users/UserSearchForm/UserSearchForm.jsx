@@ -1,3 +1,4 @@
+// Vendors
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
@@ -5,10 +6,14 @@ import { useHistory } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 import { GrPowerReset } from 'react-icons/gr';
 
+// Components
 import Button from '../../../ui/Button';
 import Input from '../../../ui/Input';
+
+// State
 import { usersActions } from '../_usersSlice_';
 
+// Styles
 import styles from './UserSearchForm.module.css';
 
 const UserSearchForm = ({ className }) => {

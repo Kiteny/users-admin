@@ -1,3 +1,4 @@
+// Vendors
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
@@ -6,8 +7,10 @@ import {
   FaBackward, FaForward, FaFastBackward, FaFastForward,
 } from 'react-icons/fa';
 
+// State
 import { selectUsersTotal } from '../_usersSlice_';
 
+// Styles
 import styles from './UsersOffsetControls.module.css';
 
 const UsersOffsetControls = ({ className }) => {

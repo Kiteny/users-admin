@@ -1,6 +1,8 @@
+// Vendors
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// Styles
 import styles from './UsersList.module.css';
 
 const UsersList = ({ headers, children }) => {

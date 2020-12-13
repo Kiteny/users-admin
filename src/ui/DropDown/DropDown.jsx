@@ -1,7 +1,9 @@
+// Vendors
 import React, { useState, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri';
 
+// Styles
 import styles from './DropDown.module.css';
 
 const DropDown = forwardRef(({

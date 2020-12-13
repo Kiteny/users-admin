@@ -1,13 +1,17 @@
+// Vendors
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useHistory } from 'react-router-dom';
 
+// Components
 import UserForm from '../UserForm';
 import Input from '../../../ui/Input';
 import DropDown from '../../../ui/DropDown';
 import validationSchema from './validationSchema';
+
+// State
 import { usersActions } from '../_usersSlice_';
 
 const UserAddForm = () => {

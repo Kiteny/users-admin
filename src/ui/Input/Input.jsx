@@ -1,6 +1,8 @@
+// Vendors
 import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 
+// Styles
 import styles from './Input.module.css';
 
 const Input = forwardRef(({

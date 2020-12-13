@@ -1,7 +1,11 @@
+// Vendors
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// Components
 import Button from '../../../ui/Button';
+
+// Styles
 import styles from './UserForm.module.css';
 
 const UserForm = ({

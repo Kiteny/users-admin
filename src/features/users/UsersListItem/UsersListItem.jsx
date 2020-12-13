@@ -1,11 +1,14 @@
+// Vendors
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { FaTrashAlt, FaEdit } from 'react-icons/fa';
 
+// State
 import { selectUserById, usersActions } from '../_usersSlice_';
 
+// Styles
 import styles from './UsersListItem.module.css';
 
 const UsersListItem = ({ userId }) => {
